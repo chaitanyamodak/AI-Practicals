@@ -1,0 +1,78 @@
+#include<bits/stdc++.h>
+using namespace std;
+//total distance of given path
+int calculateDistance(const vector<vector<int>>& distanceMatrix, const vector<int>& path) 
+{ 
+    	int totalDistance = distanceMatrix[path.back()][path[0]];
+for (auto i = 0; i < path.size() - 1; ++i) 
+{
+        		totalDistance += distanceMatrix[path[i]][path[i + 1]];
+    	}
+    	return totalDistance;
+}
+
+//shortest path using brute-force approach
+vector<int> solveTSP(const vector<vector<int>>& distanceMatrix, int& minDistance) 
+{
+    	int cityCount = distanceMatrix.size();
+    	vector<int> cities(cityCount);
+    	for (int i = 0; i < cityCount; ++i)
+ {
+       		 cities[i] = i;
+   	 }
+    	minDistance = INT_MAX;
+   	vector<int> bestPath;
+
+    // Generate all permutations of cities
+    	do 
+{
+        		int currentDistance = calculateDistance(distanceMatrix, cities);
+        		if (currentDistance < minDistance) 
+{
+            			minDistance = currentDistance;
+           			bestPath = cities;
+        		}
+    	}
+while (next_permutation(cities.begin() + 1, cities.end())); 
+    	return bestPath;
+}
+
+int main() 
+{
+    	int cityCount;
+    	cout << "Enter the number of cities: ";
+    	cin >> cityCount;
+
+    	vector<vector<int>> distanceMatrix(cityCount, vector<int>(cityCount));
+    	cout << "Enter the distance matrix:" << endl;
+    	for (int i = 0; i < cityCount; ++i) 
+{
+        		for (int j = 0; j < cityCount; ++j) 
+{
+            			cin >> distanceMatrix[i][j];
+        		}
+   	}
+    int minDistance;
+    vector<int> bestPath = solveTSP(distanceMatrix, minDistance);
+    cout << "Minimum Distance: " << minDistance << endl;
+    cout << "Path: ";
+    for (int city : bestPath)
+   {
+       	 cout << city << " ";
+    }
+    cout << endl;
+    return 0;
+}
+
+/*
+Enter the number of cities: 4
+Enter the distance matrix:
+0 10 15 20
+10 0 35 25
+15 35 0 30
+20 25 30 0
+
+output:-
+Minimum Distance: 80
+Path: 0 1 3 2
+*/
