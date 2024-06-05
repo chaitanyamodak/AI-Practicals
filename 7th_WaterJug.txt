@@ -1,0 +1,93 @@
+#include <iostream>
+#include <iomanip>
+#include <algorithm> 
+using namespace std;
+
+int capacity_x;
+int capacity_y;
+
+
+void show(int a, int b)
+{
+    cout << setw(12) << a << setw(12) << b << endl;
+}
+
+
+int min(int w, int z)
+{
+    return (w < z) ? w : z;
+}
+
+
+void s(int n)
+{
+    int x_has = 0, y_has = 0;
+    int to_transfer;
+    cout << setw(15) << "FIRST JUG" << setw(15) << "SECOND JUG" << endl;
+    while (x_has != n && y_has != n)
+    {
+        if (x_has == 0)
+        {
+            x_has = capacity_x;
+            show(x_has, y_has);
+        }
+        else if (y_has == capacity_y)
+        {
+            y_has = 0;
+            show(x_has, y_has);
+        }
+        else
+        {
+            to_transfer = min(capacity_y - y_has, x_has);
+            y_has = y_has + to_transfer;
+            x_has = x_has - to_transfer;
+            show(x_has, y_has);
+        }
+    }
+}
+
+int main()
+{
+    int n;
+    cout << "Enter the liters of water required out of the two jugs: ";
+    cin >> n;
+    cout << "Enter the capacity of the first jug: ";
+    cin >> capacity_x;
+    cout << "Enter the capacity of the second jug: ";
+    cin >> capacity_y;
+
+    
+    if (n <= capacity_x || n <= capacity_y)
+    {
+        
+        if (n % (__gcd(capacity_x, capacity_y)) == 0)
+        {
+            s(n);
+        }
+        else
+        {
+            cout << "This is not possible....\n";
+        }
+    }
+    else
+    {
+        cout << "This is not possible....\n";
+    }
+
+    return 0;
+}
+/*
+Enter the liters of water required out of the two jugs: 4
+Enter the capacity of the first jug: 5
+Enter the capacity of the second jug: 3
+
+
+output ->
+      FIRST JUG     SECOND JUG
+           5           0
+           2           3
+           2           0
+           0           2
+           5           2
+           4           3
+*/
