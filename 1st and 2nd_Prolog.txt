@@ -1,0 +1,186 @@
+ 1 college(rscoe).
+
+2 college (dyp).
+
+3 college(modern).
+
+4 university(dyp).
+
+5 university(sppu).
+
+6 university(mumbai).
+
+7 groupofinstitutions (modern).
+
+8 groupofinstitutions(srm).
+
+
+
+10 academicgroups (X):-college(X).
+
+11
+
+12 location (tathawade, rscoe).
+
+13 location(tathawade, dyp).
+
+14 location(shivajinagar, modern).
+
+15
+
+16 isstatusof (autonomous, rscoe).
+
+17 isstatusof (affiliated, dyp).
+
+18 isstatusof(affiliated, modern).
+
+19
+
+20 information(X,Y) :-isstatusof(X,C),
+ location (Y, C) .
+
+ college(rscoe)
+
+college (dyp)
+
+college(modern).
+
+university(sppu).
+
+university/mumbai)
+
+academicgroups(X), university(X)
+
+
+
+academicgroups(X),
+groupofinsufutions(X)
+
+
+ academicgroups(X),
+groupofinstitutions(X)
+
+
+academicgroups(What).
+
+academicgroups(X),
+groupofinstitutions(Y).
+
+
+academicgroups(X),
+groupofinstitutions(Y).
+
+
+isBiggerThan(1000,100).
+
+
+location(tathwade, What).
+
+
+information(affiliated, Areaname).
+
+
+location(shivajinagar, Whichi), isstatusof (What, Which),
+write('college in shivajinagar has status of '), write(What), write(' and name of college is'),write (Who), write(Which)
+
+
+
+
+
+
+
+
+
+/// this on is different /////
+
+ 1 sum(X,Y):- 
+2           S is X+Y,
+3           write(S).
+
+
+
+5 subtract(X,Y):-
+6              S is X-Y,
+7             write(S).
+
+8
+
+9 multiplication (X,Y):-
+10                        S is X*Y,
+11                          write(S).
+
+12
+
+13 division (X,Y):-
+12.          S is X/Y,
+11            write(5).
+
+
+
+
+sum(10,12).
+
+subtract(12,15).
+
+multiplication (10,10).
+
+
+division(10,10).
+
+
+
+
+
+
+
+
+
+
+ ///calculater this one is different /////
+
+%Addition 
+add(A,B, Result):-
+ Result is A+B.
+
+%subtraction 
+subtract (A, B, Result):-
+	 Result is A-B.
+
+%multiplication 
+multiply(A, B, Result):-
+	Result is A*B.
+%Division
+divide(A, B, Result):-
+B =\=0,% Ensure B is not zero
+Result is A/B.
+divide(_,0,'Division by zero is not allowed'.).
+
+% Example usage:
+%?-add(5, 3, Sum).
+% Sum-8
+
+
+%?- subtract(10, 4, Diff).
+Diff = 6
+
+
+%?- multiply(3, 7, Prod).
+% Prod 21
+
+
+?- divide(20, 5, Quotient).
+% Quotient 4
+%?- divide(20, 0, Error). Error 'Division by zero is not allowed'.
+
+
+
+
+cube(N, Result):-
+	 N > 0 % Ensure n is positive
+	 Result is N*N*N
+
+
+
+square(N, Result):- 
+	N>0, % Ensure N is positive
+	 Result is N*N.
